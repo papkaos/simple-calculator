@@ -58,26 +58,36 @@
         }
 
         function keyboardController(e) {
+            var ZERO_KEY_CODE = 48,
+                NINE_KEY_CODE = 57,
+                DIVISION_KEY_CODE = 47,
+                MULTIPLY_KEY_CODE = 42,
+                SUB_KEY_CODE = 45,
+                ADD_KEY_CODE = 43,
+                ENTER_KEY_CODE = 13,
+                DOT_KEY_CODE = 46,
+                C_KEY_CODE = 99;
+
             var keyPressedCode = e.keyCode;
             var keyPressedSymbol = String.fromCharCode(e.keyCode);
 
-            if (keyPressedCode >= 48 && keyPressedCode <= 57) {
+            if (keyPressedCode >= ZERO_KEY_CODE && keyPressedCode <= NINE_KEY_CODE) {
 
                 digitHandler(keyPressedSymbol);
 
-            } else if (keyPressedCode === 42 || keyPressedCode === 43 || keyPressedCode === 45 || keyPressedCode === 47) {
+            } else if (keyPressedCode === DIVISION_KEY_CODE || keyPressedCode === MULTIPLY_KEY_CODE || keyPressedCode === SUB_KEY_CODE || keyPressedCode === ADD_KEY_CODE) {
 
                 operationHandler(keyPressedSymbol);
 
-            } else if (keyPressedCode === 13) {
+            } else if (keyPressedCode === ENTER_KEY_CODE) {
 
                 resultHandler();
 
-            } else if (keyPressedCode === 46) {
+            } else if (keyPressedCode === DOT_KEY_CODE) {
 
                 dotHandler(keyPressedSymbol);
 
-            } else if (keyPressedCode === 99) {
+            } else if (keyPressedCode === C_KEY_CODE) {
 
                 clear();
             }
@@ -159,7 +169,7 @@
                 var result = eval(+firstValue + operation + +secondValue);
 
                 if (!isNumeric(result)) {
-                    throw Error("Error");
+                    throw new Error("Error");
                 }
             } catch (e) {
                 result = e.message;
